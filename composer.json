@@ -16,7 +16,8 @@
         "laravel/framework": "^7.0",
         "laravel/nova": "*",
         "laravel/scout": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "rushughes/viewcache": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -34,6 +35,10 @@
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Viewcache"
         }
     ],
     "extra": {
