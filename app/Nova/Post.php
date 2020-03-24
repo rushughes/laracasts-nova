@@ -29,6 +29,8 @@ class Post extends Resource
      */
     public static $title = 'title';
 
+    public static $globallySearchable = true;
+
     /**
      * The columns that should be searched.
      *
@@ -37,6 +39,14 @@ class Post extends Resource
     public static $search = [
         'id', 'title', 'body'
     ];
+
+    public function title() {
+      return $this->title . ' - ' . $this->category;
+    }
+
+    public function subtitle() {
+      return 'Author: ' . $this->user->name;
+    }
 
     public static function indexQuery(NovaRequest $request, $query)
     {

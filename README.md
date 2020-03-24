@@ -11,3 +11,7 @@ php artisan make:model Tag
 php artisan make:migration create_post_tag_table --create="post_tag"
 php artisan migrate
 php artisan make:policy PostPolicy -m Post
+composer require laravel/scout
+php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
+composer require algolia/algoliasearch-client-php
+php artisan scout:import "App\Post"
