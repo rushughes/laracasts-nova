@@ -19,3 +19,4 @@ php artisan nova:filter PostPublished
 php artisan nova:filter PostCategories
 php artisan nova:lens MostTags
 php artisan nova:action PublishPost
+php artisan queue:listen
