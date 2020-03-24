@@ -169,7 +169,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -664,14 +664,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        //
+  mounted: function mounted() {
+    //
+  },
+
+  methods: {
+    activateCache: function activateCache() {
+      Nova.request().post('/nova-vendor/viewcache').then(function (data) {
+        alert("Success");
+      });
     }
+  }
 });
 
 /***/ }),
@@ -719,26 +724,21 @@ var render = function() {
           _c(
             "h1",
             { staticClass: "text-white text-4xl text-90 font-light mb-6" },
-            [_vm._v("\n            We're in a black hole.\n        ")]
+            [
+              _vm._v(
+                "\n            Enable your application View Cache!\n        "
+              )
+            ]
           ),
           _vm._v(" "),
-          _c("p", { staticClass: "text-white-50% text-lg" }, [
-            _vm._v(
-              "\n            You can edit this tool's component at:\n            "
-            ),
-            _c(
-              "code",
-              {
-                staticClass:
-                  "ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1"
-              },
-              [
-                _vm._v(
-                  "\n                /nova-components/Viewcache/resources/js/components/Tool.vue\n            "
-                )
-              ]
-            )
-          ])
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default btn-primary",
+              on: { click: _vm.activateCache }
+            },
+            [_vm._v("\n          Enable Cache\n        ")]
+          )
         ]
       )
     ],

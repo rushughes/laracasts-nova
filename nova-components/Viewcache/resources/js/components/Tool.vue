@@ -20,15 +20,12 @@
             </svg>
 
             <h1 class="text-white text-4xl text-90 font-light mb-6">
-                We're in a black hole.
+                Enable your application View Cache!
             </h1>
 
-            <p class="text-white-50% text-lg">
-                You can edit this tool's component at:
-                <code class="ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1">
-                    /nova-components/Viewcache/resources/js/components/Tool.vue
-                </code>
-            </p>
+            <button @click="activateCache" class="btn btn-default btn-primary">
+              Enable Cache
+            </button>
         </card>
     </div>
 </template>
@@ -38,6 +35,14 @@ export default {
     mounted() {
         //
     },
+    methods: {
+      activateCache() {
+        Nova.request().post('/nova-vendor/viewcache')
+          .then(data => {
+            alert("Success");
+          });
+      }
+    }
 }
 </script>
 
