@@ -142,7 +142,9 @@ class Post extends Resource
     {
         return [
           (new PublishPost)->canSee(function ($request) {
-            return $request->user()->id === 1;
+            return true;
+          })->canRun(function ($request, $post) {
+            return $post->id === 2;
           })
         ];
     }
