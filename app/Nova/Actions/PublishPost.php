@@ -8,8 +8,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Text;
 
-class PublishPost extends Action implements ShouldQueue
+class PublishPost extends Action
 {
     use InteractsWithQueue, Queueable;
 
@@ -28,9 +29,7 @@ class PublishPost extends Action implements ShouldQueue
           ]);
         }
 
-        sleep(5);
-
-        return Action::message('The posts was published successfully');
+        return Action::message($fields->message);
     }
 
     /**
@@ -40,6 +39,8 @@ class PublishPost extends Action implements ShouldQueue
      */
     public function fields()
     {
-        return [];
+        return [
+          Text::make('message')
+        ];
     }
 }
