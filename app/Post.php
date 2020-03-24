@@ -10,4 +10,8 @@ class Post extends Model
       'publish_at' => 'datetime',
       'publish_until' => 'datetime'
     ];
+
+    public function user() {
+      return $this->belongsTo(User::class);
+    }
 }
