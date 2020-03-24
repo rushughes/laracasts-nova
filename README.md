@@ -21,3 +21,5 @@ php artisan nova:lens MostTags
 php artisan nova:action PublishPost
 QUEUE_CONNECTION=redis
 php artisan queue:listen
+php artisan nova:value PostCount
+php artisan nova:trend PostsPerDay
