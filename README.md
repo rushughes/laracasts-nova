@@ -15,3 +15,5 @@ composer require laravel/scout
 php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
 composer require algolia/algoliasearch-client-php
 php artisan scout:import "App\Post"
+php artisan nova:filter PostPublished
+php artisan nova:filter PostCategories
