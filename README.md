@@ -48,3 +48,5 @@ php artisan queue:listen
 php artisan nova:value PostCount
 
 php artisan nova:trend PostsPerDay
+
+php artisan nova:partition PostsPerCategory

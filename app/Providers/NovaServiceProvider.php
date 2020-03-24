@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Nova\Metrics\PostAverage;
 use App\Nova\Metrics\PostCount;
 use App\Nova\Metrics\PostStatic;
+use App\Nova\Metrics\PostsPerCategory;
 use App\Nova\Metrics\PostsPerDay;
 use App\Nova\Metrics\PostsPerMonth;
 use Illuminate\Support\Facades\Gate;
@@ -67,6 +68,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new PostStatic,
             new PostsPerDay,
             new PostsPerMonth,
+            new PostsPerCategory,
         ];
     }
 
