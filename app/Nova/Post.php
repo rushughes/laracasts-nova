@@ -106,9 +106,9 @@ class Post extends Resource
     public function cards(Request $request)
     {
         return [
-          new PostsPerDay,
-          new PostsPerMonth,
-          new PostsPerCategory,
+          (new PostsPerDay)->width('full'),
+          (new PostsPerMonth)->width('1/2'),
+          (new PostsPerCategory)->width('1/2'),
         ];
     }
 
