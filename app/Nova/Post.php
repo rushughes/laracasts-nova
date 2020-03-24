@@ -48,16 +48,25 @@ class Post extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Title'),
-            Trix::make('Body'),
-            DateTime::make('Publish At')->hideFromIndex(),
-            DateTime::make('Publish Until')->hideFromIndex(),
+            Text::make('Title')->rules([
+              'required'
+            ]),
+            Trix::make('Body')->rules([
+              'required'
+            ]),
+            DateTime::make('Publish At')
+              ->hideFromIndex()
+              ->rules('after_or_equal:today'),
+            DateTime::make('Publish Until')
+              ->hideFromIndex()
+              ->rules('after_or_equal:publish_at'),
             Boolean::make('Is Published'),
             Select::make('Category')->options([
               'tutorials' => 'Tutorials',
               'news' => 'News',
-            ])->hideWhenUpdating(),
-            BelongsTo::make('User'),
+            ])->hideWhenUpdating()
+              ->rules('required'),
+            BelongsTo::make('User')->rules('required'),
             BelongsToMany::make('Tags')
         ];
     }
