@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Nova\Actions\Actionable;
 use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-  use Searchable;
+  use Searchable, Actionable;
 
     protected $casts = [
       'publish_at' => 'datetime',
