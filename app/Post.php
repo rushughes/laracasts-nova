@@ -14,6 +14,10 @@ class Post extends Model
       'publish_until' => 'datetime'
     ];
 
+    protected $fillable = [
+      'is_published'
+    ];
+
     public function user() {
       return $this->belongsTo(User::class);
     }

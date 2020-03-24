@@ -18,3 +18,4 @@ php artisan scout:import "App\Post"
 php artisan nova:filter PostPublished
 php artisan nova:filter PostCategories
 php artisan nova:lens MostTags
+php artisan nova:action PublishPost
