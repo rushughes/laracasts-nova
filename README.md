@@ -10,3 +10,4 @@ php artisan make:migration create_tags_table --create="tags"
 php artisan make:model Tag
 php artisan make:migration create_post_tag_table --create="post_tag"
 php artisan migrate
+php artisan make:policy PostPolicy -m Post

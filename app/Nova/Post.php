@@ -38,6 +38,11 @@ class Post extends Resource
         'id', 'title', 'body'
     ];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->where('user_id', $request->user()->id);
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -60,7 +65,11 @@ class Post extends Resource
             DateTime::make('Publish Until')
               ->hideFromIndex()
               ->rules('after_or_equal:publish_at'),
-            Boolean::make('Is Published'),
+            Boolean::make('Is Published')
+              ->canSee(function($request) {
+                // return $request->user()->can('publish_post', $this);
+                return false;
+              }),
             Select::make('Category')->options([
               'tutorials' => 'Tutorials',
               'news' => 'News',
