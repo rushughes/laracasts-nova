@@ -141,7 +141,9 @@ class Post extends Resource
     public function actions(Request $request)
     {
         return [
-          new PublishPost
+          (new PublishPost)->canSee(function ($request) {
+            return $request->user()->id === 1;
+          })
         ];
     }
 }
