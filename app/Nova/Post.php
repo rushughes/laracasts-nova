@@ -74,7 +74,7 @@ class Post extends Resource
             ID::make()->sortable(),
             StringLimit::make('Title')->rules([
               'required'
-            ]),
+            ])->max(150),
             Trix::make('Body')->rules([
               'required'
             ]),

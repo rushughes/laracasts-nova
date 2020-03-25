@@ -12,4 +12,10 @@ class StringLimit extends Field
      * @var string
      */
     public $component = 'string-limit';
+
+    public function max($value) {
+      return $this->withMeta([
+        'maxLength' => $value,
+      ]);
+    }
 }

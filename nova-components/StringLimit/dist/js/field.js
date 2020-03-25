@@ -437,13 +437,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['resourceName', 'resourceId', 'field'],
 
-    data: function data() {
-        return {
-            maxLength: 255
-        };
-    },
-
-
     methods: {
         /*
          * Set the initial, internal value for the field.
@@ -27910,7 +27903,7 @@ var render = function() {
               id: _vm.field.name,
               type: "text",
               placeholder: _vm.field.name,
-              max: _vm.maxLength
+              max: _vm.field.maxLength
             },
             domProps: { value: _vm.value },
             on: {
@@ -27926,7 +27919,7 @@ var render = function() {
           _c("P", { staticClass: "my-2 text-light" }, [
             _vm._v(
               "\n            " +
-                _vm._s(_vm.maxLength - _vm.value.length) +
+                _vm._s(_vm.field.maxLength - _vm.value.length) +
                 " characters remaining.\n        "
             )
           ])
