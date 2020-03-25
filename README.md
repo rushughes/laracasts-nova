@@ -56,3 +56,7 @@ php artisan nova:tool rushughes/viewcache
 php artisan nova:card rushughes/nova-clock
 
 php artisan nova:field rushughes/string-limit
+
+php artisan route:list
+
+ php artisan nova:theme rushughes/nova-theme
