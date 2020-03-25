@@ -424,6 +424,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -431,6 +436,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0_laravel_nova__["FormField"], __WEBPACK_IMPORTED_MODULE_0_laravel_nova__["HandlesValidationErrors"]],
 
     props: ['resourceName', 'resourceId', 'field'],
+
+    data: function data() {
+        return {
+            maxLength: 255
+        };
+    },
+
 
     methods: {
         /*
@@ -27879,34 +27891,48 @@ var render = function() {
     "default-field",
     { attrs: { field: _vm.field, errors: _vm.errors } },
     [
-      _c("template", { slot: "field" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.value,
-              expression: "value"
-            }
-          ],
-          staticClass: "w-full form-control form-input form-input-bordered",
-          class: _vm.errorClasses,
-          attrs: {
-            id: _vm.field.name,
-            type: "text",
-            placeholder: _vm.field.name
-          },
-          domProps: { value: _vm.value },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+      _c(
+        "template",
+        { slot: "field" },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.value,
+                expression: "value"
               }
-              _vm.value = $event.target.value
+            ],
+            staticClass: "w-full form-control form-input form-input-bordered",
+            class: _vm.errorClasses,
+            attrs: {
+              id: _vm.field.name,
+              type: "text",
+              placeholder: _vm.field.name,
+              max: _vm.maxLength
+            },
+            domProps: { value: _vm.value },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.value = $event.target.value
+              }
             }
-          }
-        })
-      ])
+          }),
+          _vm._v(" "),
+          _c("P", { staticClass: "my-2 text-light" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.maxLength - _vm.value.length) +
+                " characters remaining.\n        "
+            )
+          ])
+        ],
+        1
+      )
     ],
     2
   )

@@ -7,8 +7,13 @@
                 class="w-full form-control form-input form-input-bordered"
                 :class="errorClasses"
                 :placeholder="field.name"
+                :max="maxLength"
                 v-model="value"
             />
+
+            <P class="my-2 text-light">
+                {{ (maxLength - value.length) }} characters remaining.
+            </P>
         </template>
     </default-field>
 </template>
@@ -20,6 +25,12 @@ export default {
     mixins: [FormField, HandlesValidationErrors],
 
     props: ['resourceName', 'resourceId', 'field'],
+
+    data() {
+      return {
+        maxLength: 255,
+      };
+    },
 
     methods: {
         /*

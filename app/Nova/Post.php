@@ -19,6 +19,8 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Rushughes\StringLimit\StringLimit;
+
 
 class Post extends Resource
 {
@@ -70,7 +72,7 @@ class Post extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Title')->rules([
+            StringLimit::make('Title')->rules([
               'required'
             ]),
             Trix::make('Body')->rules([
