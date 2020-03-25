@@ -18,7 +18,8 @@
         "laravel/scout": "^8.0",
         "laravel/tinker": "^2.0",
         "rushughes/viewcache": "*",
-        "rushughes/nova-clock": "*"
+        "rushughes/nova-clock": "*",
+        "rushughes/string-limit": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -44,6 +45,10 @@
         {
             "type": "path",
             "url": "./nova-components/NovaClock"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/StringLimit"
         }
     ],
     "extra": {
