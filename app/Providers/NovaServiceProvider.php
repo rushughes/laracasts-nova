@@ -9,9 +9,10 @@ use App\Nova\Metrics\PostsPerCategory;
 use App\Nova\Metrics\PostsPerDay;
 use App\Nova\Metrics\PostsPerMonth;
 use Illuminate\Support\Facades\Gate;
-//use Laravel\Nova\Cards\Help;
+use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Rushughes\NovaClock\NovaClock;
 use Rushughes\Viewcache\Viewcache;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -63,13 +64,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            //new Help,
+            new Help,
             new PostAverage,
             new PostCount,
             new PostStatic,
             new PostsPerDay,
             new PostsPerMonth,
             new PostsPerCategory,
+            (new NovaClock)->displaySeconds(true)->blink(true),
         ];
     }
 

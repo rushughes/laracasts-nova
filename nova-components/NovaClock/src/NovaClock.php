@@ -13,6 +13,18 @@ class NovaClock extends Card
      */
     public $width = '1/3';
 
+    public function blink($blink = true) {
+      return $this->withMeta([
+        'blink' => $blink,
+      ]);
+    }
+
+    public function displaySeconds($displaySeconds = true) {
+      return $this->withMeta([
+        'displaySeconds' => $displaySeconds,
+      ]);
+    }
+
     /**
      * Get the component name for the element.
      *

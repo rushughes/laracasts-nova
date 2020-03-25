@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
@@ -88,7 +88,7 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(4)
 /* template */
-var __vue_template__ = __webpack_require__(5)
+var __vue_template__ = __webpack_require__(6)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -241,8 +241,7 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_digital_clock__ = __webpack_require__(5);
 //
 //
 //
@@ -250,8 +249,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['card'],
+    components: {
+        Clock: __WEBPACK_IMPORTED_MODULE_0_vue_digital_clock__["a" /* default */]
+    },
 
     mounted: function mounted() {
         //
@@ -260,6 +264,255 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+function padZero(number) {
+  if (number < 10) {
+    return "0" + number;
+  }
+  return number;
+}
+
+var getDate = function () { return new Date(); };
+
+var getSeconds = function () { return padZero(getDate().getSeconds()); };
+
+var getMinutes = function () { return padZero(getDate().getMinutes()); };
+
+var getHour = function (twelveHour) {
+  var hours = getDate().getHours();
+  if (twelveHour && hours > 12) {
+    hours = hours - 12;
+  }
+  return padZero(hours);
+};
+
+var getAmPm = function () { return (getDate().getHours() > 12 ? "pm" : "am"); };
+
+var script = {
+  name: "vue-digital-clock",
+
+  props: ["blink", "displaySeconds", "twelveHour"],
+
+  data: function data() {
+    return {
+      ticker: null,
+      minutes: getMinutes(),
+      hours: getHour(this.twelveHour),
+      seconds: getSeconds(),
+      amPm: getAmPm()
+    };
+  },
+
+  created: function created() {
+    var this$1 = this;
+
+    this.ticker = setInterval(function () {
+      this$1.minutes = getMinutes();
+      this$1.hours = getHour(this$1.twelveHour);
+      this$1.seconds = getSeconds();
+    }, 1000);
+  },
+
+  destroyed: function destroyed() {
+    clearInterval(this.ticker);
+  }
+};
+
+function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
+/* server only */
+, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+  if (typeof shadowMode !== 'boolean') {
+    createInjectorSSR = createInjector;
+    createInjector = shadowMode;
+    shadowMode = false;
+  } // Vue.extend constructor export interop.
+
+
+  var options = typeof script === 'function' ? script.options : script; // render functions
+
+  if (template && template.render) {
+    options.render = template.render;
+    options.staticRenderFns = template.staticRenderFns;
+    options._compiled = true; // functional template
+
+    if (isFunctionalTemplate) {
+      options.functional = true;
+    }
+  } // scopedId
+
+
+  if (scopeId) {
+    options._scopeId = scopeId;
+  }
+
+  var hook;
+
+  if (moduleIdentifier) {
+    // server build
+    hook = function hook(context) {
+      // 2.3 injection
+      context = context || // cached call
+      this.$vnode && this.$vnode.ssrContext || // stateful
+      this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
+      // 2.2 with runInNewContext: true
+
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__;
+      } // inject component styles
+
+
+      if (style) {
+        style.call(this, createInjectorSSR(context));
+      } // register component module identifier for async chunk inference
+
+
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier);
+      }
+    }; // used by ssr in case component is cached and beforeCreate
+    // never gets called
+
+
+    options._ssrRegister = hook;
+  } else if (style) {
+    hook = shadowMode ? function () {
+      style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
+    } : function (context) {
+      style.call(this, createInjector(context));
+    };
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // register for functional component in vue file
+      var originalRender = options.render;
+
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context);
+        return originalRender(h, context);
+      };
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate;
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+    }
+  }
+
+  return script;
+}
+
+var normalizeComponent_1 = normalizeComponent;
+
+/* script */
+var __vue_script__ = script;
+// For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+script.__file = "/Users/yerbue01/workspace/vue-digital-clock/src/Clock.vue";
+
+/* template */
+var __vue_render__ = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c("time", { staticClass: "clock" }, [
+    _c("span", { staticClass: "clock__hour" }, [_vm._v(_vm._s(_vm.hours))]),
+    _c(
+      "span",
+      {
+        staticClass: "clock__colon",
+        style: {
+          visibility: !_vm.blink || _vm.seconds % 2 === 0 ? "visible" : "hidden"
+        }
+      },
+      [_vm._v(":")]
+    ),
+    _c("span", { staticClass: "clock__minutes" }, [
+      _vm._v(_vm._s(_vm.minutes))
+    ]),
+    _vm.displaySeconds
+      ? _c(
+          "span",
+          {
+            staticClass: "clock__colon",
+            style: {
+              visibility:
+                !_vm.blink || _vm.seconds % 2 === 0 ? "visible" : "hidden"
+            }
+          },
+          [_vm._v(":")]
+        )
+      : _vm._e(),
+    _vm.displaySeconds
+      ? _c("span", { staticClass: "clock__seconds" }, [
+          _vm._v(_vm._s(_vm.seconds))
+        ])
+      : _vm._e(),
+    _vm.twelveHour
+      ? _c("span", { staticClass: "clock__ampm" }, [_vm._v(_vm._s(_vm.amPm))])
+      : _vm._e()
+  ])
+};
+var __vue_staticRenderFns__ = [];
+__vue_render__._withStripped = true;
+
+  /* style */
+  var __vue_inject_styles__ = undefined;
+  /* scoped */
+  var __vue_scope_id__ = undefined;
+  /* module identifier */
+  var __vue_module_identifier__ = undefined;
+  /* functional template */
+  var __vue_is_functional_template__ = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+
+  
+  var Clock = normalizeComponent_1(
+    { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
+    __vue_inject_styles__,
+    __vue_script__,
+    __vue_scope_id__,
+    __vue_is_functional_template__,
+    __vue_module_identifier__,
+    undefined,
+    undefined
+  );
+
+/* harmony default export */ __webpack_exports__["a"] = (Clock);
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -270,12 +523,14 @@ var render = function() {
     "card",
     { staticClass: "flex flex-col items-center justify-center" },
     [
-      _c("div", { staticClass: "px-3 py-3" }, [
-        _c("h1", { staticClass: "text-center text-3xl text-80 font-light" }, [
-          _vm._v("Nova Clock")
-        ])
-      ])
-    ]
+      _c("Clock", {
+        attrs: {
+          blink: _vm.card.blink,
+          displaySeconds: _vm.card.displaySeconds
+        }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -289,7 +544,7 @@ if (false) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
