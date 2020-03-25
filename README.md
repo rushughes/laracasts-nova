@@ -52,3 +52,5 @@ php artisan nova:trend PostsPerDay
 php artisan nova:partition PostsPerCategory
 
 php artisan nova:tool rushughes/viewcache
+
+php artisan nova:card rushughes/nova-clock
